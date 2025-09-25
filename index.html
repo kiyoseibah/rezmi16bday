@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy 16th Birthday!</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #a8e6cf, #dcedc1);
+      color: #2f4f4f;
+      text-align: center;
+      overflow-x: hidden;
+    }
+    .section {
+      display: none;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+    .active {
+      display: block;
+      animation: fadeIn 1.5s ease;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+    .letter img {
+      max-width: 220px;
+      border-radius: 20px;
+      margin: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    .button {
+      background: #81c784;
+      color: white;
+      padding: 12px 28px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+      margin-top: 20px;
+    }
+    .button:hover {
+      background: #66bb6a;
+    }
+    .cake {
+      position: relative;
+      margin: 40px auto;
+      width: 200px;
+      height: 200px;
+    }
+    .cake-base {
+      background: #ffcc80;
+      width: 200px;
+      height: 120px;
+      border-radius: 0 0 20px 20px;
+      position: absolute;
+      bottom: 0;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .candle {
+      width: 20px;
+      height: 60px;
+      background: #fff59d;
+      margin: 0 5px;
+      position: relative;
+      display: inline-block;
+      border-radius: 5px;
+    }
+    .flame {
+      width: 15px;
+      height: 15px;
+      background: radial-gradient(circle, #ffeb3b, #ff9800);
+      border-radius: 50%;
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: flicker 1s infinite ease-in-out;
+    }
+    @keyframes flicker {
+      0%, 100% {transform: translateX(-50%) scale(1);}
+      50% {transform: translateX(-50%) scale(1.2);}
+    }
+    .wish-input {
+      padding: 10px;
+      border: 2px solid #81c784;
+      border-radius: 8px;
+      width: 70%;
+      font-size: 1rem;
+      margin-top: 15px;
+    }
+    p.message {
+      max-width: 600px;
+      margin: 20px auto;
+      line-height: 1.6;
+      white-space: pre-line;
+    }
+    .music-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #81c784;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      border: none;
+    }
+    .music-toggle:hover {
+      background: #66bb6a;
+    }
+  </style>
+</head>
+<body>
+  <audio id="bg-music" loop>
+    <source src="16bday.mp3" type="audio/mp3">
+  </audio>
+
+  <button class="music-toggle" onclick="toggleMusic()">Play Music ▶️</button>
+
+  <!-- Section 1: Letter -->
+  <div id="letter-section" class="section active letter">
+    <h1>Happy 16th Birthday, Rez! ✨</h1>
+    <p class="message">
+Hai rez,
+Selamat menginjak usia 16 tahun yeayyy semoga slalu bahagia, sehat, dan banyak rejekinya ya. Semangat juga sekolahnya, rajin belajar (but don’t overdo it ya wkwkk) dan enjoy your highschool! Semangat juga paskibnya, you are very cool bisa secinta dan sepassionate itu sama paskib (tpi jgn smpe kecapean ye).
+
+Rez asal u tau, eversince u were born, my smile getting bigger and brighter. U lit up me, mamah, and ayah’s life. U’re the best sister I can ever wish for. Ya meskipun galak dan nyebelin tpi gpp I still love u. I hope we can still sharing inside jokes dan tukar cerita until we’re both nenek-nenek. Promise me u will still love me even kita dah tua y.
+
+Don’t forget to enjoy ur life, ur school, paskib, hang out with friends, makan seblak, enjoy it all while it lasts. Semangat juga belajarnya, go chase ur dreams.
+
+Yaudah si idk what else to say aowkakkaka pokoknya hbd y lopyu somach mwah ❤️
+    </p>
+    <div>
+      <img src="pipih1.jpg" alt="Pipih Photo 1">
+      <img src="pipih2.jpg" alt="Pipih Photo 2">
+      <img src="pipih3.jpg" alt="Pipih Photo 3">
+      <img src="pipih4.jpg" alt="Pipih Photo 4">
+      <img src="pipih5.jpg" alt="Pipih Photo 5">
+
+    </div>
+    <button class="button" onclick="goToCake()">Make a Wish & Blow the Candles ❤️</button>
+  </div>
+
+  <!-- Section 2: Cake -->
+  <div id="cake-section" class="section">
+    <h2>Make a Wish!</h2>
+    <p>Write your birthday wish and then blow out the candles.</p>
+    <input type="text" class="wish-input" placeholder="Type your wish here...">
+    <div class="cake">
+      <div class="cake-base"></div>
+      <div style="position:absolute; top:20px; left:30px;">
+        <div class="candle"><div class="flame"></div></div>
+        <div class="candle"><div class="flame"></div></div>
+        <div class="candle"><div class="flame"></div></div>
+      </div>
+    </div>
+    <button class="button" onclick="blowCandles()">Blow Candles</button>
+    <p id="final-message" style="display:none; font-size:1.2rem; color:#388e3c; margin-top:20px;">The candles are out! May your wish come true ✨</p>
+  </div>
+
+  <script>
+    const bgMusic = document.getElementById('bg-music');
+    let isPlaying = false;
+
+    function toggleMusic() {
+      const button = document.querySelector('.music-toggle');
+      if (isPlaying) {
+        bgMusic.pause();
+        button.textContent = 'Play Music ▶️';
+      } else {
+        bgMusic.play();
+        button.textContent = 'Pause Music ⏸️';
+      }
+      isPlaying = !isPlaying;
+    }
+
+    function goToCake() {
+      document.getElementById('letter-section').classList.remove('active');
+      document.getElementById('cake-section').classList.add('active');
+    }
+
+    function blowCandles() {
+      document.querySelectorAll('.flame').forEach(flame => flame.style.display = 'none');
+      document.getElementById('final-message').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
